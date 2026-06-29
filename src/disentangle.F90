@@ -1367,6 +1367,10 @@ contains
         ! exclude states outside disentanglement energy window
         if ((eigval_opt(i, nkp) < dis_manifold%win_min) .or. &
             (eigval_opt(i, nkp) > dis_manifold%win_max)) cycle
+        ! if proj_min takes precedence over froz_max, exclude low-proj bands
+        ! even if they fall inside the frozen energy window
+        if (dis_manifold%proj_min_overrides_froz_max .and. &
+            (projs(i) < dis_manifold%proj_min)) cycle
         ! freeze high-proj states + states inside frozen energy window, i.e. their union
         if ((projs(i) >= dis_manifold%proj_max) .or. &
             (dis_manifold%frozen_states .and. ((eigval_opt(i, nkp) >= dis_manifold%froz_min) &

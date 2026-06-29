@@ -842,6 +842,9 @@ contains
       call set_error_input(error, 'Error: w90_readwrite_read_dis_manifold: dis_proj_max < dis_proj_min', comm)
       return
     end if
+    call w90_readwrite_get_keyword(settings, 'dis_proj_min_overrides_froz_max', found, error, comm, &
+                                   l_value=dis_manifold%proj_min_overrides_froz_max)
+    if (allocated(error)) return
   end subroutine w90_readwrite_read_dis_manifold
 
   subroutine w90_readwrite_read_kmesh_data(settings, kmesh_input, error, comm)
@@ -1295,6 +1298,7 @@ contains
     call w90_readwrite_get_keyword(settings, 'dis_froz_proj', found, error, comm)
     call w90_readwrite_get_keyword(settings, 'dis_proj_min', found, error, comm)
     call w90_readwrite_get_keyword(settings, 'dis_proj_max', found, error, comm)
+    call w90_readwrite_get_keyword(settings, 'dis_proj_min_overrides_froz_max', found, error, comm)
     call w90_readwrite_get_keyword(settings, 'dis_mix_ratio', found, error, comm)
     call w90_readwrite_get_keyword(settings, 'dis_num_iter', found, error, comm)
     call w90_readwrite_get_keyword(settings, 'dis_spheres_first_wann', found, error, comm)

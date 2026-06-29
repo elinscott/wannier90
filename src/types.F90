@@ -226,6 +226,9 @@ module w90_types
     !! upper threshold of the projectability disentanglement, equal and above are frozen
     logical :: frozen_proj
     !! whether to use projectability frozen window, i.e., proj_min/proj_max
+    logical :: proj_min_overrides_froz_max = .false.
+    !! if true, bands with projectability < proj_min are excluded even if
+    !! inside the frozen energy window
     ! disentangle parameters
     ! Used by plot, hamiltonian, wannierise, postw90_common, get_oper - not read
     integer, allocatable :: ndimwin(:)
